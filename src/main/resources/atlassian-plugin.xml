@@ -1,20 +1,36 @@
+
 <atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
-    </plugin-info>
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}" />
+  </plugin-info>
 
-    <!-- internationalize your plugin -->
-    <resource type="i18n" name="org.zeroturnaround language" location="english"/>
 
-    <!-- defines an example task -->
-    <taskType name="bamboo-liverebel-plugin" class="org.zeroturnaround.liverebel.bamboo.ExampleTask" key="test">
-      <description>A simple Hello World Task</description>
-      <!-- Categories available in 3.1: "builder", "test" and "deployment"
-      <category name=""/>
-      -->
-      <configuration class="org.zeroturnaround.liverebel.bamboo.ExampleTaskConfigurator"/>
-      <resource type="freemarker" name="edit" location="editExampleTask.ftl"/>
-    </taskType>
+  <!--taskType name="bamboo-liverebel-plugin" class="org.zeroturnaround.liverebel.bamboo.DeployTask" key="liverebel.tasks.deploy">
+    <description>todo</description>
+    <category name="deployment"/>
+  </taskType-->
+    
+  <web-item key="liverebel.configuration.menuitem" name="LiveRebel Configuration" section="system.admin/plugins" weight="10">
+    <label key="LiveRebel Configuration" />
+    <link linkId="liverebel.configuration">/admin/editLiveRebel.action</link>
+  </web-item>
+  
+  <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
+  
+  <xwork key="liverebel.configuration.action" name="LiveRebel Configuration">
+    <package name="liverebel" extends="admin">
+      <action name="editLiveRebel" class="org.zeroturnaround.liverebel.bamboo.ConfigurationAction" method="edit">
+        <result name="input" type="freemarker">/admin/configuration.ftl</result>
+      </action>
+      <action name="saveLiveRebel" class="org.zeroturnaround.liverebel.bamboo.ConfigurationAction" method="save">
+        <result name="input" type="freemarker">/admin/configuration.ftl</result>
+        <result name="success" type="redirect-action">
+          <param name="actionName">editLiveRebel</param>
+          <param name="message">success</param>
+        </result>
+      </action>
+    </package>
+  </xwork>
 </atlassian-plugin>
