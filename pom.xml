@@ -19,6 +19,12 @@
     lost sessions and OutOfMemoryErrors. You have to have a running LiveRebel installed to use this plugin.
   </description>
   <packaging>atlassian-plugin</packaging>
+  
+  <scm>
+    <connection>scm:git:git://github.com/zeroturnaround/bamboo-liverebel-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:zeroturnaround/bamboo-liverebel-plugin.git</developerConnection>
+    <url>http://github.com/zeroturnaround/bamboo-liverebel-plugin</url>
+  </scm>
 
   <properties>
     <bamboo.version>4.0</bamboo.version>
