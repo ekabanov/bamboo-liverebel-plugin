@@ -48,6 +48,8 @@ public class ConfigurationAction extends BambooActionSupport {
     String URL = (String) settings.get("liverebel.url");
     if (URL != null)
       setURL(URL);
+    else
+      setURL("https://127.0.0.1:9001");
     String token = (String) settings.get("liverebel.token");
     if (token != null)
       setToken(token);

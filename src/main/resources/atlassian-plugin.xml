@@ -7,10 +7,13 @@
   </plugin-info>
 
 
-  <!--taskType name="bamboo-liverebel-plugin" class="org.zeroturnaround.liverebel.bamboo.DeployTask" key="liverebel.tasks.deploy">
-    <description>todo</description>
+  <taskType name="LiveRebel Deploy" class="org.zeroturnaround.liverebel.bamboo.DeployTask" key="liverebel.tasks.deploy">
+    <description>Deploy artifacts to any application server.</description>
     <category name="deployment"/>
-  </taskType-->
+    <configuration class="org.zeroturnaround.liverebel.bamboo.DeployTaskConfigurator"/>
+    <resource type="freemarker" name="edit" location="editDeployTask.ftl"/>
+    <resource type="freemarker" name="view" location="viewDeployTask.ftl"/>
+  </taskType>
     
   <web-item key="liverebel.configuration.menuitem" name="LiveRebel Configuration" section="system.admin/plugins" weight="10">
     <label key="LiveRebel Configuration" />
@@ -18,6 +21,9 @@
   </web-item>
   
   <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
+
+  <component name="LiveRebel Management Component" key="liverebelManager"
+               class="org.zeroturnaround.liverebel.bamboo.LiveRebelManager"/>
   
   <xwork key="liverebel.configuration.action" name="LiveRebel Configuration">
     <package name="liverebel" extends="admin">
