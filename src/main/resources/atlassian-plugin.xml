@@ -5,14 +5,14 @@
     <version>${project.version}</version>
     <vendor name="${project.organization.name}" url="${project.organization.url}" />
   </plugin-info>
-
-
+  
   <taskType name="LiveRebel Deploy" class="org.zeroturnaround.liverebel.bamboo.DeployTask" key="liverebel.tasks.deploy">
     <description>Deploy artifacts to any application server.</description>
     <category name="deployment"/>
     <configuration class="org.zeroturnaround.liverebel.bamboo.DeployTaskConfigurator"/>
     <resource type="freemarker" name="edit" location="editDeployTask.ftl"/>
     <resource type="freemarker" name="view" location="viewDeployTask.ftl"/>
+    <resource type="download" name="icon" location="icon.jpg"/>
   </taskType>
     
   <web-item key="liverebel.configuration.menuitem" name="LiveRebel Configuration" section="system.admin/plugins" weight="10">
@@ -23,7 +23,7 @@
   <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
 
   <component name="LiveRebel Management Component" key="liverebelManager"
-               class="org.zeroturnaround.liverebel.bamboo.LiveRebelManager"/>
+             class="org.zeroturnaround.liverebel.bamboo.LiveRebelManager"/>
   
   <xwork key="liverebel.configuration.action" name="LiveRebel Configuration">
     <package name="liverebel" extends="admin">
