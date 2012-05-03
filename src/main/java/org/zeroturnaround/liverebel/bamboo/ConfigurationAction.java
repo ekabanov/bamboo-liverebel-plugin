@@ -1,3 +1,18 @@
+/**
+ *    Copyright (C) 2012 ZeroTurnaround OÜ <support@zeroturnaround.com>
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
 package org.zeroturnaround.liverebel.bamboo;
 
 import com.atlassian.bamboo.ww2.BambooActionSupport;
@@ -11,7 +26,7 @@ import java.net.URL;
 import org.codehaus.plexus.util.StringUtils;
 
 /**
- *
+ * 
  * @author Mirko Adari
  */
 public class ConfigurationAction extends BambooActionSupport {
@@ -22,7 +37,6 @@ public class ConfigurationAction extends BambooActionSupport {
   private PluginSettingsFactory pluginSettingsFactory;
   private String message;
 
-  
   @Override
   public void validate() {
     clearErrorsAndMessages();
@@ -44,7 +58,7 @@ public class ConfigurationAction extends BambooActionSupport {
 
   public String doEdit() throws Exception {
     PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-    
+
     String URL = (String) settings.get("liverebel.url");
     if (URL != null)
       setURL(URL);
@@ -53,7 +67,7 @@ public class ConfigurationAction extends BambooActionSupport {
     String token = (String) settings.get("liverebel.token");
     if (token != null)
       setToken(token);
-    
+
     if (getMessage() == "success") {
       addActionMessage(getMessage());
     }
